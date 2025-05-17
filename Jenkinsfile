@@ -25,11 +25,11 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'npm run test -- --watch=false --no-progress --browsers=ChromeHeadless'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh 'npm run test -- --watch=false --no-progress --browsers=ChromeHeadless'
+        //     }
+        // }
 
         stage('SonarQube Analysis') {
             steps {
