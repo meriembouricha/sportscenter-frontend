@@ -1,0 +1,31 @@
+<div class="table-container">
+    <table class="complaint-table">
+      <thead>
+        <tr>
+         
+          <th>Utilisateur</th>
+          <th>Objet</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th> <!-- Changement du titre de la colonne -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let complaint of complaints">
+          
+          <td>{{ complaint.user }}</td>
+          <td>{{ complaint.titleComplaint }}</td>
+          <td>{{ complaint.descComplaint }}</td>
+          <td>{{ complaint.status ? 'Traitée' : 'Non traitée' }}</td>
+          <td>
+            <button class="response-button" [ngClass]="{ 'disabled-button': complaint.status }" 
+            [disabled]="complaint.status" 
+            (click)="redirectToResponseComponent(complaint.idComplaint)">
+      Répondre
+    </button>
+                <button class="delete-button" (click)="deleteComplaint(complaint.idComplaint)">Supprimer</button> <!-- Bouton "Delete" ici -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

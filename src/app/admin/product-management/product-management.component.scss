@@ -1,0 +1,161 @@
+// Variables
+
+button {
+  background-color: #007bff; /* Couleur de fond bleue */
+  color: white; /* Couleur du texte en blanc */
+  border: none; /* Pas de bordure */
+  padding: 10px 20px; /* Espacement interne */
+  margin: 5px; /* Marge externe */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main au survol */
+  font-size: 16px; /* Taille de la police */
+  transition: background-color 0.3s; /* Transition pour l'effet au survol */
+}
+
+button:disabled {
+  background-color: #cccccc; /* Couleur de fond grise pour les boutons désactivés */
+  cursor: not-allowed; /* Curseur interdit pour les boutons désactivés */
+}
+
+button:not(:disabled):hover {
+  background-color: #0056b3; /* Couleur de fond plus foncée au survol */
+}
+
+$primary-color: #007bff;
+$secondary-color: #0056b3;
+$border-color: #e0e0e0;
+$background-color: #ffffff;
+$padding: 20px;
+$gap: 30px;
+$border-radius: 12px;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$font-family: 'Arial', sans-serif;
+
+// Mixin pour les boutons
+@mixin button-style {
+  padding: 10px 20px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: $secondary-color;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Styles globaux
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $padding;
+  font-family: $font-family;
+
+  h2 {
+    text-align: center;
+    margin-bottom: $padding;
+    font-size: 28px;
+    color: #333;
+  }
+}
+
+// Contenu principal
+.content {
+  display: flex;
+  gap: $gap;
+
+  // Section formulaire
+  .form-section {
+    flex: 1;
+    padding: $padding;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: $background-color;
+    box-shadow: $box-shadow;
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      @include button-style;
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+
+  // Section liste
+  .list-section {
+    flex: 1;
+    padding: $padding;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: $background-color;
+    box-shadow: $box-shadow;
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid $border-color;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+
+        span {
+          font-size: 16px;
+          color: #333;
+        }
+
+        button {
+          @include button-style;
+          margin-left: 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

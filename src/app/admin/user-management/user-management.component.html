@@ -1,0 +1,24 @@
+<!-- user-management.component.html -->
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom d'utilisateur</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <!-- Bouton pour supprimer un utilisateur -->
+        <button class="btn btn-danger button-spacing" (click)="deleteUser(user.id)">Supprimer</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

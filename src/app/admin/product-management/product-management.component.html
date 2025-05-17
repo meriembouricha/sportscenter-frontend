@@ -1,0 +1,38 @@
+<div class="container">
+    <h2>Gestion des Produits</h2>
+    
+    <div class="content">
+      <!-- Section Ajouter un produit à droite -->
+      <div class="form-section">
+        <h3>Ajouter un produit</h3>
+        <form (ngSubmit)="createProduct()">
+          <input type="text" [(ngModel)]="newProduct.name" name="name" placeholder="Nom du produit" required>
+          <textarea [(ngModel)]="newProduct.description" name="description" placeholder="Description" required></textarea>
+          <input type="number" [(ngModel)]="newProduct.price" name="price" placeholder="Prix" required>
+          <input type="text" [(ngModel)]="newProduct.pictureUrl" name="pictureUrl" placeholder="URL de l'image" required>
+          <input type="text" [(ngModel)]="newProduct.productType" name="productType" placeholder="Type de produit" required>
+          <input type="text" [(ngModel)]="newProduct.productBrand" name="productBrand" placeholder="Marque" required>
+          <button type="submit">Ajouter</button>
+        </form>
+      </div>
+  
+      <!-- Section Liste des produits à gauche -->
+      <div class="list-section">
+        <h3>Liste des Produits</h3>
+        <ul>
+          <li *ngFor="let product of products">
+            <span>{{ product.name }} - {{ product.price }}€</span>
+            <!-- Utilisation de routerLink pour rediriger vers le composant de mise à jour -->
+            <button [routerLink]="['/admin/update-product', product.id]">Modifier</button>
+            <button (click)="deleteProduct(product.id)">Supprimer</button>
+          </li>
+        </ul>
+        <div>
+          <button (click)="loadPreviousPage()" [disabled]="currentPage === 0">Previous</button>
+          <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+          <button (click)="loadNextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

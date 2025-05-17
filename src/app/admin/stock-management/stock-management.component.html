@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Gestion des Stocks</h2>
+
+  <div class="list-section">
+    <h3>Liste des Produits</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Photo</th>
+          <th>Quantité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td><img [src]="product.pictureUrl" class="product-image" /></td>
+          <td>{{ product.productQuantity }}</td>
+          <td>
+            <button (click)="incrementStock(product.id)">Ajouter</button>
+            <button (click)="decrementStock(product.id, product.productQuantity)" [disabled]="product.productQuantity <= 0">
+              Réduire
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div>
+      <button (click)="loadPreviousPage()" [disabled]="currentPage === 0">Précédent</button>
+      <span>Page {{ currentPage + 1 }} sur {{ totalPages }}</span>
+      <button (click)="loadNextPage()" [disabled]="currentPage === totalPages - 1">Suivant</button>
+    </div>
+  </div>
+</div>

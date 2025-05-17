@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Modifier le produit</h2>
+    <form [formGroup]="updateProductForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Nom du produit</label>
+        <input id="name" formControlName="name" type="text" required>
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" required></textarea>
+      </div>
+      <div>
+        <label for="price">Prix</label>
+        <input id="price" formControlName="price" type="number" required>
+      </div>
+      <div>
+        <label for="pictureUrl">URL de l'image</label>
+        <input id="pictureUrl" formControlName="pictureUrl" type="text" required>
+      </div>
+      <div>
+        <label for="productType">Type de produit</label>
+        <input id="productType" formControlName="productType" type="text" required>
+      </div>
+      <div>
+        <label for="productBrand">Marque</label>
+        <input id="productBrand" formControlName="productBrand" type="text" required>
+      </div>
+      <button type="submit" [disabled]="updateProductForm.invalid">Mettre à jour</button>
+    </form>
+  </div>
+  

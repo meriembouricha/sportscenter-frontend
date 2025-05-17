@@ -1,0 +1,84 @@
+<div class="container mt-4" *ngIf="product">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Product Image -->
+      <div class="product-image-container">
+        <img [src]="product.pictureUrl" [alt]="product.name" class="img-fluid product-image" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Product Details -->
+      <h2 class="product-title">{{ product.name }}</h2>
+      <p class="product-description text-muted">{{ product.description }}</p>
+      <div class="product-info">
+        <div class="product-info-item">
+          <strong>Price:</strong>
+          <span class="product-price">{{ product.price | currency: 'EUR' }}</span>
+        </div>
+        <div class="product-info-item">
+          <strong>Brand:</strong>
+          <span class="product-brand">{{ product.productBrand }}</span>
+        </div>
+        <div class="product-info-item">
+          <strong>Type:</strong>
+          <span class="product-type">{{ product.productType }}</span>
+        </div>
+        <!-- Quantity Control -->
+        <div class="quantity-control">
+          <strong>Quantity:</strong>
+          <button class="quantity-button" (click)="decrementQuantity()">
+            <i class="fa fa-minus"></i>
+          </button>
+          <span class="quantity">{{ quantity }}</span>
+          <button class="quantity-button" (click)="incrementQuantity()">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Add to Cart Button -->
+      <button class="btn btn-primary add-to-cart-button" (click)="addToCart()">Add to Cart</button>
+      <button class="btn btn-secondary go-back-button" routerLink="/store">Go Back to Store</button>
+    </div>
+  </div>
+
+  <!-- Container for Feedback Section -->
+  <div class="feedback-container mt-4 p-2 border rounded bg-light">
+   <!-- Afficher le formulaire uniquement si l'utilisateur est connecté -->
+<div *ngIf="user">
+  <h4>Leave a Feedback</h4>
+  <form (ngSubmit)="submitFeedback()" #feedbackForm="ngForm">
+    <div class="form-group">
+      <div class="stars">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]"
+              [ngClass]="{'filled': star <= feedback.rate, 'empty': star > feedback.rate}"
+              (click)="setRating(star)"
+              class="star">&#9733;</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" id="comment" name="comment" [(ngModel)]="feedback.descFeedback" rows="2" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm" [disabled]="feedbackForm.invalid">Submit</button>
+  </form>
+</div>
+
+
+    <!-- Display Existing Feedbacks -->
+    <div class="existing-feedbacks mt-3">
+      <h5>Customer Reviews</h5>
+      <div *ngFor="let fb of feedbacks" class="feedback-item mb-2">
+        <p>{{ fb.user?.username }}</p>
+        <div class="stars">
+          <span *ngFor="let star of getStars(fb.rate)" class="star filled">&#9733;</span>
+          <span *ngFor="let emptyStar of getStars(5 - fb.rate)" class="star empty">&#9733;</span>
+        </div>
+
+        <p><strong>Rating:</strong> {{ fb.rate }} Stars</p>
+        <p><strong>Comment:</strong> {{ fb.descFeedback }}</p>
+
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
