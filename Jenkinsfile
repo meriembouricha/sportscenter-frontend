@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SCANNER_HOME = tool 'SonarScanner' // Jenkins tool name
-        SONARQUBE_TOKEN = credentials('sonarqube-token') // Secret Text credentials ID
+        SONARQUBE_SCANNER_HOME = tool 'SonarScanner'
+        SONARQUBE_TOKEN = credentials('sonarqube-token')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/meriembouricha/sportscenter-frontend.git'
+                checkout scm
             }
         }
 
