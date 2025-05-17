@@ -6,7 +6,7 @@ pipeline {
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         IMAGE_NAME = "sports-center-frontend"
         VERSION = "latest"
-        NEXUS_REGISTRY = "4.221.169.183:5003"
+        NEXUS_REGISTRY = "localhost:5003"
         ACR_REGISTRY = "sportscenteracr6388.azurecr.io"
     }
 
@@ -60,6 +60,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Push to ACR') {
             steps {
