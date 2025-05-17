@@ -4,6 +4,10 @@ pipeline {
     environment {
         SONARQUBE_SCANNER_HOME = tool 'SonarScanner'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
+        IMAGE_NAME = "sports-center-frontend"
+        VERSION = "latest"
+        NEXUS_REGISTRY = "4.221.169.183:5003"
+        ACR_REGISTRY = "sportscenteracr6388.azurecr.io"
     }
 
     stages {
@@ -21,15 +25,9 @@ pipeline {
 
         stage('Build App') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build --prod'
             }
         }
-
-        // stage('Run Tests') {
-        //     steps {
-        //         sh 'npm run test -- --watch=false --no-progress --browsers=ChromeHeadless'
-        //     }
-        // }
 
         stage('SonarQube Analysis') {
             steps {
@@ -40,6 +38,36 @@ pipeline {
                         -Dsonar.sources=src \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=${SONARQUBE_TOKEN}
+                    """
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${VERSION} ."
+            }
+        }
+
+        stage('Push to Nexus') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'nexus-docker', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh """
+                        docker login ${NEXUS_REGISTRY} -u $USER -p $PASS
+                        docker tag ${IMAGE_NAME}:${VERSION} ${NEXUS_REGISTRY}/${IMAGE_NAME}:${VERSION}
+                        docker push ${NEXUS_REGISTRY}/${IMAGE_NAME}:${VERSION}
+                    """
+                }
+            }
+        }
+
+        stage('Push to ACR') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'acr-credentials', usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASS')]) {
+                    sh """
+                        docker login ${ACR_REGISTRY} -u $ACR_USER -p $ACR_PASS
+                        docker tag ${IMAGE_NAME}:${VERSION} ${ACR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+                        docker push ${ACR_REGISTRY}/${IMAGE_NAME}:${VERSION}
                     """
                 }
             }
