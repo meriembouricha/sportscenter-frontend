@@ -1,0 +1,65 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AdminModule } from './admin/admin.module';
+import { FormsModule } from '@angular/forms';
+import { ComplaintComponent } from './complaint/complaint.component';
+import { MyComplaintsComponent } from './my-complaints/my-complaints.component';
+import { SuccessComponent } from './success/success.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { OrderDashboardComponent } from './order-dashboard/order-dashboard.component';
+import { MonthlySalesChartComponent } from './monthly-sales-chart/monthly-sales-chart.component';
+import { NgChartsModule } from 'ng2-charts';
+// import { DailySalesChartComponent } from './daily-sales-chart/daily-sales-chart.component';
+// import { BestProductsChartComponent } from './best-products-chart/best-products-chart.component';
+import { TopBrandsChartComponent } from './top-brands-chart/top-brands-chart.component';
+import { LivreurOrderDashboardComponent } from './livreur-order-dashboard/livreur-order-dashboard.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ComplaintComponent,
+    MyComplaintsComponent,
+    SuccessComponent,
+    CancelComponent,
+    OrderDashboardComponent,
+    LivreurOrderDashboardComponent,
+    // DailySalesChartComponent,
+    // BestProductsChartComponent,
+    // TopBrandsChartComponent,
+    // Supprime AdminComponent de cette liste
+  ],
+  imports: [
+    BrowserModule,
+    AdminModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule,
+    FormsModule,
+    HomeModule,
+    NgxSpinnerModule.forRoot({type: 'square-jelly-box'})
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

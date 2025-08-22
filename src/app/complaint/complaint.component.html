@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="border rounded shadow-sm p-4 bg-white">
+        <h2 class="fw-bold text-center mb-4">Réclamations</h2>
+
+        <form (ngSubmit)="submitForm()">
+          <!-- Objet -->
+          <div class="mb-3">
+            <label for="objet" class="form-label fw-semibold">
+              <i class="fas fa-tag me-2 text-muted"></i>Objet de la réclamation
+            </label>
+            <select class="form-select" id="objet" [(ngModel)]="objet" name="objet" (change)="checkOtherOption()">
+              <option value="" disabled selected>Choisissez un sujet</option>
+              <option value="livraison">Problème de livraison</option>
+              <option value="produit_defectueux">Article défectueux ou non conforme</option>
+              <option value="erreur_commande">Erreur dans la commande</option>
+              <option value="paiement">Problème de paiement</option>
+              <option value="retour_remboursement">Retour et remboursement</option>
+              <option value="service_client">Service client</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <!-- Autre Objet -->
+          <div class="mb-3" *ngIf="objet === 'autre'">
+            <label for="autreObjet" class="form-label fw-semibold">
+              <i class="fas fa-pencil-alt me-2 text-muted"></i>Précisez votre réclamation
+            </label>
+            <input type="text" class="form-control" id="autreObjet" name="autreObjet" [(ngModel)]="autreObjet" />
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold">
+              <i class="fas fa-align-left me-2 text-muted"></i>Description de la réclamation
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              class="form-control"
+              rows="4"
+              [(ngModel)]="description"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-dark w-100" [disabled]="loading">
+            <span *ngIf="!loading">Envoyer</span>
+            <span *ngIf="loading"><i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...</span>
+          </button>
+
+          <!-- Feedback -->
+          <div *ngIf="successMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

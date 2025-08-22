@@ -1,0 +1,22 @@
+<div class="complaints-container">
+  <h2>Mes réclamations</h2>
+
+  <div *ngIf="complaints.length === 0">Aucune réclamation pour cet utilisateur.</div>
+
+  <div *ngFor="let complaint of complaints">
+    <div class="complaint">
+      <h3>Réclamation {{ complaint.idComplaint }}</h3>
+      <p>{{ complaint.descComplaint }}</p>
+
+      <div *ngIf="complaint.response">
+        <h4>Réponse :</h4>
+        <p>{{ complaint.response.descResponse }}</p>
+      </div>
+      <div *ngIf="!complaint.response">
+        <p>Aucune réponse encore.</p>
+      </div>
+
+      <button (click)="deleteComplaint(complaint.idComplaint)">Supprimer</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+// Complaint form enhancements (optional to use in your global styles or component SCSS)
+.form-label {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+textarea,
+input,
+select {
+  transition: all 0.3s ease;
+  &:focus {
+    border-color: #999;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+}
+
+.btn-dark {
+  background-color: #333;
+  border: none;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #111;
+  }
+}
+
+.alert {
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}

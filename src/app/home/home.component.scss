@@ -1,0 +1,148 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Carousel */
+.carousel-item img {
+  height: 90vh;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  animation: fadeInUp 1s ease-in-out;
+  color: #fff;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+/* Welcome Section */
+section.text-center.py-5 {
+  background: #007bff;
+  color: white;
+
+  h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Featurettes */
+.featurette {
+  margin: 4rem 0;
+
+  h2 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  p.lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.featurette-divider {
+  margin: 3rem 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Testimonials */
+section.bg-light {
+  background-color: #f8f9fa !important;
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    p.lead {
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    small {
+      font-size: 0.9rem;
+      color: #777;
+    }
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #343a40;
+  color: white;
+  padding: 2rem 0;
+
+  p {
+    margin: 0.2rem 0;
+    font-size: 0.95rem;
+  }
+
+  a {
+    color: #ff6b6b;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: #f86c6c;
+    }
+  }
+}

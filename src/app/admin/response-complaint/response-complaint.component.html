@@ -1,0 +1,12 @@
+<div class="response-form-container">
+  <h2 class="title">📩 Répondre à la réclamation</h2>
+  <form (ngSubmit)="submitResponse()" class="response-form">
+    
+    <div class="form-group">
+      <label for="responseText">✍️ Votre réponse :</label>
+      <textarea id="responseText" name="responseText" [(ngModel)]="responseText" required placeholder="Rédigez votre réponse ici..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">🚀 Envoyer</button>
+  </form>
+</div>
