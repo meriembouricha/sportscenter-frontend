@@ -21,5 +21,13 @@ export class UserService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
 
+// Désactiver un utilisateur
+  deactivateUser(id: number): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/deactivate/${id}`, {});
+  }
 
+  // Activer un utilisateur
+  activateUser(id: number): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/activate/${id}`, {});
+  }
 }

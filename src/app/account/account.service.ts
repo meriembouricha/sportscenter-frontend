@@ -124,7 +124,9 @@ export class AccountService {
 
         // Redirection en fonction du rôle
         if (user.role === 'ROLE_ADMIN') {
-          this.router.navigateByUrl('/admin');
+          this.router.navigateByUrl('/admin/stats');
+        } else if (user.role === 'ROLE_LIVREUR') {
+          this.router.navigateByUrl('/livreur');
         } else {
           this.router.navigateByUrl('/store');
         }

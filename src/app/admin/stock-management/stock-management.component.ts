@@ -41,18 +41,20 @@ export class StockManagementComponent implements OnInit {
     }
   }
 
-  incrementStock(productId: number): void {
-    this.stockService.addStock(productId, 1).subscribe(() => {
-      this.loadPage(this.currentPage); // Refresh after update
+  incrementStock(productId: number, quantity: number): void {
+  if (quantity <= 0) return; // sécurité
+  this.stockService.addStock(productId, quantity).subscribe(() => {
+    this.loadPage(this.currentPage); // Refresh après update
+  });
+}
+
+decrementStock(productId: number, quantity: number): void {
+  if (quantity > 0) {
+    this.stockService.reduceStock(productId, quantity).subscribe(() => {
+      this.loadPage(this.currentPage); // Refresh après update
     });
   }
+}
 
-  decrementStock(productId: number, currentQuantity: number): void {
-    if (currentQuantity > 0) {
-      this.stockService.reduceStock(productId, 1).subscribe(() => {
-        this.loadPage(this.currentPage); // Refresh after update
-      });
-    }
-  }
   
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-sidebar.component.scss']
 })
 export class AdminSidebarComponent {
+  @Input() isLivreur: boolean = false; // 🔹 défini par le parent
   isCollapsed = false;
 
   toggleSidebar() {

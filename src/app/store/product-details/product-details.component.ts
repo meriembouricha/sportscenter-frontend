@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { StoreService } from '../store.service';
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbService } from 'xng-breadcrumb';
 import { BasketService } from 'src/app/basket/basket.service';
 import { ToastrService } from 'ngx-toastr';
 import { FeedbackService } from 'src/app/core/services/feedback.service';
@@ -26,7 +25,6 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     private activateRoute: ActivatedRoute,
-    private breadcrumb: BreadcrumbService,
     private basketService: BasketService,
     private productService: ProductService,
     private feedbackService: FeedbackService,
@@ -115,7 +113,6 @@ export class ProductDetailsComponent implements OnInit {
       this.storeService.getProduct(+id).subscribe({
         next: (product) => {
           this.product = product;
-          this.breadcrumb.set('@productName', product.name);
         },
         error: (error) => console.log(error),
       });

@@ -1,61 +1,55 @@
+/* Navbar par défaut (transparente) */
 .navbar {
-  background-color: #fff !important;
-  border-bottom: 1px solid #eaeaea;
+  background-color: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
   z-index: 1000;
   font-size: 0.95rem;
   padding-top: 10px;
   padding-bottom: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.navbar-brand {
-  font-weight: 600;
-  color: #222;
-  text-decoration: none;
+/* Navbar en noir quand on est sur /store */
+.navbar-store {
+  background-color: #000 !important;
+  border-bottom: 1px solid #222 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
 }
 
-.navbar-nav .nav-item {
-  margin-left: 12px;
+/* Logo */
+.navbar-brand img {
+  max-height: 60px;
+  margin-left: -350px; /* décalage gauche */
 }
 
+/* Liens du menu */
 .navbar-nav .nav-link {
-  color: #444;
-  display: flex;
-  align-items: center;
-  transition: color 0.3s ease;
-  font-size: small;
-
-
-  i {
-    margin-right: 6px;
-  }
-
-  &:hover {
-    color: #000;
-  }
+  margin-left: 20px;
+  color: #d5d5d5;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
+/* Hover bordeaux + actif */
+.navbar-nav .nav-link:hover,
 .nav-item.active .nav-link {
-  color: #000;
-  font-weight: 600;
+  color: #a20101; /* Rouge Bordeaux */
 }
 
+/* Badge du panier */
 .cart-badge {
-  background-color: #d24a4a;
+  background-color: #ff6b6b;
   color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
   border-radius: 50%;
-  padding: 3px 7px;
-  font-size: 12px;
   position: absolute;
-  top: -6px;
-  right: -10px;
-  transform: scale(0.95);
-  font-weight: bold;
+  top: 0;
+  right: 0;
 }
 
-/* Responsive fix for navbar logo */
-@media (max-width: 576px) {
-  .navbar-brand span {
-    font-size: 1rem;
-  }
+/* Icônes */
+.navbar-nav .fa-lg {
+  font-size: 1.2rem;
 }
-

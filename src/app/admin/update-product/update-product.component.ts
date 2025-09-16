@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/services/productService';
 
@@ -16,7 +17,8 @@ export class UpdateProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class UpdateProductComponent implements OnInit {
       this.productService.updateProduct(updatedProduct).subscribe(response => {
         console.log('Produit mis à jour avec succès');
       });
+       this.router.navigate(['/admin/products']);
     }
   }
 }

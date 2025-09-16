@@ -118,3 +118,30 @@ select {
   font-weight: 500;
   color: #374151;
 }
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px; /* largeur fixe */
+  background-color: #2c3e50; /* couleur de fond */
+  color: white;
+  min-height: 100vh;
+  position: fixed; /* fixée sur la gauche */
+  top: 0;
+  left: 0;
+}
+
+.content {
+  margin-left: 250px; /* pour éviter que le contenu passe sous la sidebar */
+  padding: 20px;
+  flex: 1;
+}
+
+.stock-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+

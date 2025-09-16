@@ -20,7 +20,7 @@ export const canActivate: CanActivateFn = (
       return true;
     } else {
       // Sinon, rediriger l'utilisateur vers une autre page, par exemple /store
-      return router.createUrlTree(['/store']);
+      return router.createUrlTree(['/store']); 
     }
   } else {
     // Si l'utilisateur n'est pas authentifié, rediriger vers la page de connexion

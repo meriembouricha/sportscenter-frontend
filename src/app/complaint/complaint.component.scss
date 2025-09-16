@@ -1,30 +1,96 @@
-// Complaint form enhancements (optional to use in your global styles or component SCSS)
-.form-label {
-  color: #444;
-  font-size: 0.95rem;
-}
+/* Bannière Réclamation */
+.complaint-search {
+  text-align: center;
+  padding: 40px 20px 60px 20px;
+  background: linear-gradient(135deg, #1a1a1a, #363636);
+  color: white;
 
-textarea,
-input,
-select {
-  transition: all 0.3s ease;
-  &:focus {
-    border-color: #999;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    outline: none;
+  h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #fff;
+
+    span {
+      color: #b91919;
+      text-shadow: 0 0 10px rgba(160, 16, 16, 0.7);
+      position: relative;
+    }
+  }
+
+  p {
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #cfcfcf;
   }
 }
 
-.btn-dark {
-  background-color: #333;
-  border: none;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #111;
+/* Zone principale */
+.complaint-area {
+  padding: 40px 20px;
+
+  .complaint-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .form-label {
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    input,
+    select,
+    textarea {
+      transition: all 0.3s ease;
+      &:focus {
+        border-color: #999;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+      border-radius: 8px;
+    }
+
+    .cta-btn {
+      background-color: #c91d1d;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 14px 0;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #b91919;
+        transform: scale(1.05);
+      }
+    }
+
+    .alert {
+      font-size: 0.9rem;
+      padding: 0.75rem;
+    }
   }
 }
-
-.alert {
-  font-size: 0.9rem;
-  padding: 0.75rem;
+/* Ajustement pour navbar fixe */
+.complaint-section {
+  padding-top: 100px; /* ajuste selon la hauteur de ta navbar */
 }
+
+/* Optionnel : réduire un peu le padding de la bannière pour que ça reste proportionnel */
+.complaint-search {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+

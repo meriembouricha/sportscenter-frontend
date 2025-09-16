@@ -47,7 +47,8 @@ import { TopBrandsChartComponent } from '../top-brands-chart/top-brands-chart.co
     NgChartsModule
   ],
   exports: [
-    AdminComponent
+    AdminComponent,
+    AdminSidebarComponent
   ]
 })
 export class AdminModule { }

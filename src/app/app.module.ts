@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
 import { FormsModule } from '@angular/forms';
 import { ComplaintComponent } from './complaint/complaint.component';
@@ -22,6 +21,10 @@ import { NgChartsModule } from 'ng2-charts';
 // import { BestProductsChartComponent } from './best-products-chart/best-products-chart.component';
 import { TopBrandsChartComponent } from './top-brands-chart/top-brands-chart.component';
 import { LivreurOrderDashboardComponent } from './livreur-order-dashboard/livreur-order-dashboard.component';
+import { LivreurSideBarComponent } from './livreur-side-bar/livreur-side-bar.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { FaqComponent } from './faq/faq.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,10 @@ import { LivreurOrderDashboardComponent } from './livreur-order-dashboard/livreu
     CancelComponent,
     OrderDashboardComponent,
     LivreurOrderDashboardComponent,
+    LivreurSideBarComponent,
+    NotAuthorizedComponent,
+    FaqComponent,
+    AboutusComponent,
     // DailySalesChartComponent,
     // BestProductsChartComponent,
     // TopBrandsChartComponent,
@@ -45,9 +52,7 @@ import { LivreurOrderDashboardComponent } from './livreur-order-dashboard/livreu
     HttpClientModule,
     CoreModule,
     FormsModule,
-    HomeModule,
-    NgxSpinnerModule.forRoot({type: 'square-jelly-box'})
-  ],
+    HomeModule  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -7,4 +7,6 @@ export interface Product {
     productType: string
     productBrand: string
     productQuantity: number
+
+      addQuantity?: number;
   }

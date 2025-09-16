@@ -75,4 +75,34 @@ export class UserManagementComponent implements OnInit {
       }
     );
   }
+  activateUser(id: number): void {
+  this.userService.activateUser(id).subscribe(
+    (updatedUser) => {
+      // mettre à jour la liste locale
+      this.users = this.users.map(user =>
+        user.id === id ? updatedUser : user
+      );
+      this.filterUsers();
+    },
+    (error) => {
+      console.error("Erreur lors de l'activation de l'utilisateur", error);
+    }
+  );
+}
+
+deactivateUser(id: number): void {
+  this.userService.deactivateUser(id).subscribe(
+    (updatedUser) => {
+      // mettre à jour la liste locale
+      this.users = this.users.map(user =>
+        user.id === id ? updatedUser : user
+      );
+      this.filterUsers();
+    },
+    (error) => {
+      console.error("Erreur lors de la désactivation de l'utilisateur", error);
+    }
+  );
+}
+
 }
