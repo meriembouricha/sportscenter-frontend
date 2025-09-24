@@ -171,11 +171,16 @@ pipeline {
         
         stage('Push Docker Image to ACR') {
             steps {
-                script {
+                withCredentials([usernamePassword(credentialsId: 'acr-user', usernameVariable: 'ACR_USERNAME', passwordVariable: 'ACR_PASSWORD')]) {
                     sh '''
-                        echo "${ACR}" | docker login sportscenteracr.azurecr.io --username $(echo "${ACR}" | cut -d: -f1) --password-stdin
+                        echo "Logging into Azure Container Registry..."
+                        echo "${ACR_PASSWORD}" | docker login sportscenteracr.azurecr.io --username "${ACR_USERNAME}" --password-stdin
+                        
+                        echo "Pushing Docker images..."
                         docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
                         docker push ${DOCKER_IMAGE}:latest
+                        
+                        echo "Docker images pushed successfully!"
                     '''
                 }
             }
