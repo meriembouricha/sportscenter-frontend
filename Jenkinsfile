@@ -124,12 +124,9 @@ pipeline {
         
         stage('Publish Build to Nexus') {
             steps {
-                script {
-                    def nexusCreds = credentials('nexus-creds')
-                    def nexusUsr = nexusCreds.split(':')[0]
-                    def nexusPsw = nexusCreds.split(':')[1]
+                withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'NEXUS_USR', passwordVariable: 'NEXUS_PSW')]) {
                     sh """
-                        curl -v -u "${nexusUsr}:${nexusPsw}" \
+                        curl -v -u "${NEXUS_USR}:${NEXUS_PSW}" \
                             --upload-file dist-frontend-${BUILD_NUMBER}.tar.gz \
                             "http://your-nexus-server/repository/frontend-artifacts/dist-frontend-${BUILD_NUMBER}.tar.gz"
                     """
@@ -139,16 +136,13 @@ pipeline {
         
         stage('Publish Reports to Nexus') {
             steps {
-                script {
-                    def nexusCreds = credentials('nexus-creds')
-                    def nexusUsr = nexusCreds.split(':')[0]
-                    def nexusPsw = nexusCreds.split(':')[1]
+                withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'NEXUS_USR', passwordVariable: 'NEXUS_PSW')]) {
                     sh """
                         # Create reports tarball
                         tar -czf coverage-reports-${BUILD_NUMBER}.tar.gz -C coverage .
                         
                         # Upload to Nexus
-                        curl -v -u "${nexusUsr}:${nexusPsw}" \
+                        curl -v -u "${NEXUS_USR}:${NEXUS_PSW}" \
                             --upload-file coverage-reports-${BUILD_NUMBER}.tar.gz \
                             "http://your-nexus-server/repository/nexus-reports/coverage-reports-${BUILD_NUMBER}.tar.gz"
                     """
