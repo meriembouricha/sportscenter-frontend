@@ -28,7 +28,18 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                sh '''
+                    # Install Chrome dependencies for headless testing
+                    apt-get update -qq
+                    apt-get install -y -qq wget gnupg
+                    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+                    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+                    apt-get update -qq
+                    apt-get install -y -qq google-chrome-stable
+                    
+                    # Install npm dependencies
+                    npm ci
+                '''
             }
         }
         
@@ -41,7 +52,13 @@ pipeline {
                 }
                 stage('Unit Tests') {
                     steps {
-                        sh 'npm run test -- --watch=false --code-coverage'
+                        sh '''
+                            # Set Chrome binary path
+                            export CHROME_BIN=/usr/bin/google-chrome
+                            
+                            # Run tests with headless Chrome
+                            npm run test -- --watch=false --code-coverage --browsers=ChromeHeadless
+                        '''
                     }
                     post {
                         always {
