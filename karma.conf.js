@@ -42,6 +42,9 @@ module.exports = function (config) {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox', '--disable-web-security', '--disable-gpu', '--remote-debugging-port=9222']
       }
-    }
+    },
+    // Use Puppeteer's Chrome if available
+    processKillTimeout: 10000,
+    singleRun: true
   });
 };
