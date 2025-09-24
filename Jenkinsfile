@@ -48,23 +48,20 @@ pipeline {
                 stage('Unit Tests') {
                     steps {
                         sh '''
-                            echo "Skipping unit tests due to Chrome browser requirements in Jenkins environment"
-                            echo "Tests can be run locally with: npm run test"
-                            
-                            # Create dummy coverage directory for pipeline continuity
-                            mkdir -p coverage
-                            echo "Coverage reports would be generated here in a full test environment" > coverage/index.html
+                            # Run Jest tests
+                            npm run test:ci
                         '''
                     }
                     post {
                         always {
+                            publishTestResults testResultsPattern: 'coverage/junit.xml'
                             publishHTML([
-                                allowMissing: true,
+                                allowMissing: false,
                                 alwaysLinkToLastBuild: true,
                                 keepAll: true,
                                 reportDir: 'coverage',
                                 reportFiles: 'index.html',
-                                reportName: 'Coverage Report (Skipped)'
+                                reportName: 'Coverage Report'
                             ])
                         }
                     }
