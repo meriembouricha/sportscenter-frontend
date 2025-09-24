@@ -48,18 +48,18 @@ pipeline {
                 stage('Unit Tests') {
                     steps {
                         sh '''
-                            # Run Jest tests
+                            # Run Karma tests
                             npm run test:ci
                         '''
                     }
                     post {
                         always {
-                            publishTestResults testResultsPattern: 'coverage/junit.xml'
+                            publishTestResults testResultsPattern: 'coverage/client/junit.xml'
                             publishHTML([
                                 allowMissing: false,
                                 alwaysLinkToLastBuild: true,
                                 keepAll: true,
-                                reportDir: 'coverage',
+                                reportDir: 'coverage/client',
                                 reportFiles: 'index.html',
                                 reportName: 'Coverage Report'
                             ])
