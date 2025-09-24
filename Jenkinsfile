@@ -62,7 +62,6 @@ pipeline {
                     }
                     post {
                         always {
-                            publishTestResults testResultsPattern: 'coverage/client/junit.xml'
                             publishHTML([
                                 allowMissing: false,
                                 alwaysLinkToLastBuild: true,
